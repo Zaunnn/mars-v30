@@ -1,0 +1,44 @@
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Django React Webpack</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      * {
+        font-family: "Soleil", "Encode Sans Expanded", sans-serif;
+      }
+    </style>
+    <link
+      href="http://fonts.cdnfonts.com/css/soleil?styles=83915"
+      rel="stylesheet"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@400;700&family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    {% load static %} {% render_bundle 'main' 'css' %}
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/javascript">
+      const context = {
+        subjects:
+          "{% autoescape off %} {{ subjects|escapejs }} {% endautoescape %}",
+        levels:
+          "{% autoescape off %} {{ levels|escapejs }} {% endautoescape %}",
+      };
+    </script>
+    {% block content %} {% endblock %} {% render_bundle 'main' 'js' %}
+  </body>
+</html>
